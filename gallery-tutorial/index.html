@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Gallery - JS 101</title>
+    <style>
+.gallery {
+  position: relative;
+  display: inline-block;
+}
+section.gallery a {
+  position: absolute;
+  height: 100%;
+  width: 40px;
+  top: 0;
+  background: rgba(0, 0, 0, .3);
+  display: block;
+}
+
+.gallery .next-image {
+  left: 0;
+}
+
+.gallery .prev-image {
+  right: 0;
+}
+    </style>
+  </head>
+  <body>
+    <main>
+      <a class="next-image">Next</a>
+      <a class="prev-image">Previous</a>
+      <section class="gallery">
+        <img src="./2023811081.jpg">
+        <img src="./2023811112.jpg">
+        <img src="./2023811118.jpg">
+        <a class="next-image">Next</a>
+        <a class="prev-image">Previous</a>
+      </section>
+    </main>
+    <script src="./bower_components/jquery/dist/jquery.min.js"></script>
+    <script>
+var images = $(".gallery img");
+//filter or change the list - filter() not()
+var rest = images.not(":first");
+rest.hide();
+
+var onclick = function(e) {
+  console.log(e);
+  var $this = $(this);
+  $this.css("color", "red");
+  var isNext = $this.is(".next-image");
+  //figure out the current image
+  var current = $(".gallery img:visible");
+  //find the next image
+  if (isNext) {
+    var next = current.next("img");
+  } else {
+    var next = current.prev("img");
+  }
+  if (next.length == 0) {
+    if (isNext) {
+      next = $(".gallery img:first");
+    } else {
+      next = $(".gallery img:last");
+    }
+  }
+  //hide the current image
+  //show the next
+  current.hide();
+  next.fadeIn();
+};
+
+$(".next-image, .prev-image").on("click", onclick);
+    </script>
+  </body>
+</html>
