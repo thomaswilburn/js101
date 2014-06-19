@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+  <head>
+    <title>TABS!</title>
+    <meta charset="utf-8">
+    <style>
+.tab {
+  height: 500px;
+  background: #EEE;
+}
+
+.menu {
+  padding: 0;
+  margin: 0;
+}
+
+.menu li {
+  background: #EEE;
+  border-radius: 4px 4px 0 0;
+  display: inline-block;
+  padding: 0 8px;
+  margin: 0;
+}
+
+.menu li.active {
+  background: #CCC;
+}
+
+input[type!=checkbox] {
+  color: turquoise;
+}
+//a, p, li, div - tags worth 1
+//.menu, .link, .external - classes worth 10
+//#first-link - id worth 100
+
+#first-link {
+  color: blue;
+}
+
+.menu [data-hello] {
+  color: yellow;
+}
+
+.menu a {
+  color: red;
+}
+    </style>
+  </head>
+  <body>
+  
+    <a href="http://google.com">GOOGLE</a>
+  
+    <ul class="menu">
+      <li> <a href="#apples" id="first-link" data-hello="world">Apples</a>
+      <li> <a href="#oranges">Oranges</a>
+      <li> <a href="#bananas">Bananas</a>
+    </ul>
+    
+    <div class="tab" id="apples">
+      Apples
+    </div>
+    <div class="tab" id="oranges">
+      Oranges
+    </div>
+    <div class="tab" id="bananas">
+      Bananas
+    </div>
+    
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="tabs.js"></script>
+  </body>
+</html>
