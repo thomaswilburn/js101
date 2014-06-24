@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+  <head>
+    <title>DOM Graphing</title>
+    <meta charset="utf-8">
+    <style>
+.bar {
+  height: 20px;
+  background: orange;
+  white-space: nowrap;
+}
+
+.tooltip {
+  display: none;
+  position: absolute;
+  right: 200px;
+  background: white;
+}
+
+.bar:hover .tooltip {
+  display:block;
+}
+    </style>
+  </head>
+  <body>
+
+    <div class="slj-graph"></div>
+
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="http://thomaswilburn.net/sccc/archive/winter14/data/SamuelLJackson.js"></script>
+    <script>
+var div = $(".slj-graph");
+//starting point, condition for continuing, change
+/*
+for (var i = 0; i < samJackson.credits.length; i++) {
+  var credit = samJackson.credits[i];
+  console.log(credit);
+}
+*/
+/*samJackson.credits.forEach(function(item, index) {
+  console.log(item);
+  var bar = $("<div></div>");
+  bar.addClass("bar");
+  bar.html(item.title);
+  bar.css("width", item.rating * 50 + "px");
+  bar.appendTo(div);
+
+  var tooltip = $("<div></div>");
+  tooltip.addClass("tooltip");
+  tooltip.html(item.title + ", " + item.rating);
+  bar.append(tooltip);
+});*/
+    </script>
+    <script id="slj" type="text/html">
+<section>
+  <h2>All The Movies</h2>
+  {{#items}}
+  <div class="bar" style="width: {{rating}}em">
+    <div class="tooltip">{{title}} - {{rating}}</div>
+  </div>
+  {{/items}}
+</section>
+    </script>
+    <script src="bower_components/icanhaz/ICanHaz.js"></script>
+    <script>
+$(function() {
+  // samJackson.credits.forEach(function(item) {
+  //   var bar = ich.slj({
+  //     width: item.rating * 50,
+  //     rating: item.rating,
+  //     title: item.title
+  //   });
+  //   console.log(bar);
+  //   div.append(bar);
+  // })
+  var graph = ich.slj({
+    items: samJackson.credits
+  });
+  graph.appendTo(div);
+});
+    </script>
+  </body>
+</html>
